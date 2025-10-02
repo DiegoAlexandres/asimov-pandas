@@ -1,0 +1,42 @@
+#%%
+import pandas as pd
+import numpy as np
+
+#%%
+dclientes = pd.read_excel("../dados/dClientes.xlsx")
+dclientes.head()
+
+#%%
+dcategorias = pd.read_excel("../dados/dCategorias.xlsx")
+dcategorias.head()
+
+#%%
+dcategorias.info()
+
+#%%
+dcategorias = dcategorias.astype({"id_DRE": "Int64"})
+
+#%%
+dcategorias
+
+#%%
+dcategorias[dcategorias["id_DRE"] == 11]
+#%%
+fcontas_receber = pd.read_excel("../dados/fContasReceber.xlsx")
+fcontas_receber.head()
+
+#%%
+fcontas_receber[fcontas_receber["CodCategoria"] == 101]
+
+#%%
+fcontas_receber['DataPagamento'] = pd.to_datetime(fcontas_receber['DataPagamento'], errors='coerce')
+
+#%%
+faturamento_por_categoria_ano = df_receber_completo.groupby('Categoria_Nivel_3')['Valor'].sum().sort_values(ascending=False)
+
+#%%
+principal_categoria = faturamento_por_categoria_ano.index[0]
+valor_principal_categoria = faturamento_por_categoria_ano.iloc[0]
+
+resultado_anual = f"A categoria de receita que mais vendeu no ano foi '{principal_categoria}', com um faturamento de R$ {valor_principal_categoria:,.2f}."
+print(resultado_anual)
